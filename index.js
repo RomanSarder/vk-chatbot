@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
         console.log(mes.items[mes.items.length - 1].user_id);
         // res.send(JSON.stringify(messages));
         return VK.call('messages.send', {
-            user_id: mes.items[mes.items.length - 1].user_id,
+            user_id: mes.items[0].user_id,
             message: 'Привет, я даже могу тебе вот так ответить!'
         });
     }).then(() => {
@@ -41,22 +41,21 @@ app.post('/', (req, res) => {
     if (json.type === "confirmation" && (json.group_id === 145656698 || "145656698")) {
         res.send('b78abcff');
     }
-    VK.call('message.send', {
+    VK.call('messages.send', {
         user_id: me,
-        message: 'Я получил оповещение о сообщении'
+        message: 'VK посылали мне запрос!'
     }).then(() => {
-        return VK.call('message.send', {
-            user_id: me,
-            message: JSON.stringify(mes)
-        })
-    }).then(() => {
-        return VK.call('message.send', {
+        return VK.call('messages.send', {
             user_id: me,
             message: JSON.stringify(json)
         })
     }).then(() => {
         res.status(200).send('ok');
+    }).catch((err) => {
+        console.log(err);
     })
+
+
 });
 
 app.listen(PORT, () => {
