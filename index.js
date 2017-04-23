@@ -6,7 +6,7 @@ const VK = new VKAPI({
     token: "04916a8c74238b2065c4320c9d95de8806413bce7b28232d1cdfcd6f84fa2c7381ff6ebb3e01f325aea1e"
 });
 const PORT = process.env.PORT || 3000;
-const me = 425331872;
+const me = 281699141;
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -22,17 +22,10 @@ app.get('/', (req, res) => {
         out: 0,
     }).then((messages) => {
         mes = messages;
-        console.log('Done');
-        console.log(mes.items[mes.items.length - 1].user_id);
-        // res.send(JSON.stringify(messages));
-        return VK.call('messages.send', {
-            user_id: mes.items[0].user_id,
-            message: 'Привет, я даже могу тебе вот так ответить!'
-        });
-    }).then(() => {
         res.send(JSON.stringify(mes));
     }).catch(err => {
         console.log(err);
+        res.send(JSON.stringify(err));
     })
 
 });
@@ -53,6 +46,7 @@ app.post('/', (req, res) => {
         res.status(200).send('ok');
     }).catch((err) => {
         console.log(err);
+        res.send(JSON.stringify(err));
     })
 
 
