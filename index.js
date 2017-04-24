@@ -3,16 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const VKAPI = require('node-vkapi');
 const VK = new VKAPI({
-    token: "04916a8c74238b2065c4320c9d95de8806413bce7b28232d1cdfcd6f84fa2c7381ff6ebb3e01f325aea1e"
+    token: "dca344809339514735a5199dbd7f0287dde1a9e9aefff1784cc8e4211ca2af5e0478dcb4930dd81cc1fd0"
 });
 const PORT = process.env.PORT || 3000;
 const me = 281699141;
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 let mes;
