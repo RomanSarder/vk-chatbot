@@ -42,7 +42,7 @@ module.exports = {
             case 'неделя':
                 return this.generateWeekForecast(weather.daily, array[1], weather.timezone);
             default:
-                return this.generateCurrentForecast(weather.currently, array[1]);
+                return "Наверное вы неправильно ввели запрос. Попробуйте еще раз!"
         }
     },
     generateCurrentForecast(currently, city) {
