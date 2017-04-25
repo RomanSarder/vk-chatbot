@@ -52,7 +52,7 @@ module.exports = {
         let humidity = Math.round(currently.humidity * 100);
         let windSpeed = Math.round(currently.windSpeed * 1.6 * 100) / 100;
         let precipString = precipChance === 0 ? `Без осадков.` : `Вероятность осадков - ${precipChance}%`;
-        return `Сейчас в городе ${city}: ${currently.summary.toLowerCase()}.
+        return `Сейчас в городе ${city}: ${currently.summary.toLowerCase()}
         Температура - ${temperature}, чувствуется как - ${apparentTemperature}.
         ${precipString}
         Влажность: ${humidity}%.
@@ -65,10 +65,10 @@ module.exports = {
         let apparentMax = this.floorTemp(tomorrow.apparentTemperatureMax);
         let apparentMin = this.floorTemp(tomorrow.apparentTemperatureMin);
         let windSpeed = Math.round(tomorrow.windSpeed * 1.6 * 100) / 100;
-        let humidity = tomorrow.humidity * 100;
+        let humidity = Math.round(tomorrow.humidity * 100) / 100;
         let precipString = tomorrow.precipProbability === 0 ? 'Без осадков' : `Вероятность осадков - ${tomorrow.precipProbability * 100}%`;
-        return `Завтра в городе ${city}: ${tomorrow.summary.toLowerCase()}. 
-        Температура днем - ${temperatureMax}, ночью - ${temperatureMin}.
+        return `Завтра в городе ${city}: ${tomorrow.summary.toLowerCase()} 
+        Температура днем: ${temperatureMax}, ночью: ${temperatureMin}.
         Чувствуется как ${apparentMax} и ${apparentMin}.
         ${precipString}
         Влажность: ${humidity}%.
@@ -81,9 +81,9 @@ module.exports = {
         let apparentMax = this.floorTemp(today.apparentTemperatureMax);
         let apparentMin = this.floorTemp(today.apparentTemperatureMin);
         let windSpeed = Math.round(today.windSpeed * 1.6 * 100) / 100;
-        let humidity = today.humidity * 100;
+        let humidity = Math.round(today.humidity * 100) / 100;
         let precipString = today.precipProbability === 0 ? 'Без осадков' : `Вероятность осадков - ${today.precipProbability * 100}%`
-        return `Сегодня в городе ${city}: ${today.summary.toLowerCase()}.
+        return `Сегодня в городе ${city}: ${today.summary.toLowerCase()}
         Температура днем - ${temperatureMax}, ночью - ${temperatureMin}.
         Чувствуется как ${apparentMax} и ${apparentMin}.
         ${precipString}
