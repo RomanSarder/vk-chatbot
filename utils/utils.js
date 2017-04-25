@@ -19,6 +19,7 @@ module.exports = {
             }
             messageArr[1] = res.city;
             let response = constructors.generateMessage(message, res, messageArr);
+            console.log('response', typeof response);
             return this.sendMessage(message.user_id, response);
         });
     },
