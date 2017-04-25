@@ -31,6 +31,7 @@ app.post('/', (req, res) => {
     utils.recieveRequest(req.body).then(() => {
         res.status(200).send('ok');
     }).catch((e) => {
+        console.log(e);
         res.send(e);
     })
 

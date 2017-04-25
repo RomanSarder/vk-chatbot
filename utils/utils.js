@@ -1,5 +1,6 @@
 const VKAPI = require('node-vkapi');
 const api = require('../api/weatherApi');
+const constructors = require('./constructors');
 const VK = new VKAPI({
     token: "dca344809339514735a5199dbd7f0287dde1a9e9aefff1784cc8e4211ca2af5e0478dcb4930dd81cc1fd0"
 });
@@ -12,13 +13,13 @@ module.exports = {
     },
     handleMessage(message) {
         let messageArr = message.body.trim().split(' ');
-        console.log(JSON.stringify(messageArr));
-        return this.sendMessage(281699141, `Мне прислали ${JSON.stringify(messageArr)}`).then(() => {
-            return api.fetchWeatherForCity(messageArr[1]);
-        }).then((string) => {
-            console.log(message.user_id);
-            console.log(string);
-            return this.sendMessage(message.user_id, string);
+        return api.fetchWeatherForCity(messageArr[1]).then((res) => {
+            if (res === 'error') {
+                return this.sendMessage(message.user_id, 'Случилась непредвиденная ошибка. Попробуйте ввести запрос еще раз!');
+            }
+            messageArr[1] = res.city;
+            let response = constructors.generateMessage(message, res, messageArr);
+            return this.sendMessage(message.user_id, response);
         });
     },
     sendMessage(to, message) {

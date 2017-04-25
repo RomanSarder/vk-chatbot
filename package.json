@@ -13,6 +13,7 @@
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "moment-timezone": "^0.5.13",
     "node-vkapi": "^2.1.0"
   }
 }
