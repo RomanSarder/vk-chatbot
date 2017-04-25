@@ -1,13 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const VKAPI = require('node-vkapi');
-const VK = new VKAPI({
-    token: "dca344809339514735a5199dbd7f0287dde1a9e9aefff1784cc8e4211ca2af5e0478dcb4930dd81cc1fd0"
-});
 const utils = require('./utils/utils');
 const PORT = process.env.PORT || 3000;
-const me = 281699141;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());

@@ -14,14 +14,18 @@ module.exports = {
     handleMessage(message) {
         let messageArr = message.body.trim().split(' ');
         return api.fetchWeatherForCity(messageArr[1]).then((res) => {
-            if (res === 'error') {
-                return this.sendMessage(message.user_id, 'Случилась непредвиденная ошибка. Попробуйте ввести запрос еще раз!');
-            }
             messageArr[1] = res.city;
             let response = constructors.generateMessage(message, res, messageArr);
-            console.log('response', typeof response);
             return this.sendMessage(message.user_id, response);
-        });
+        }).catch((e) => {
+            return this.sendMessage(message.user_id, 'Случилась непредвиденная ошибка. Попробуйте еще раз!').then(() => {
+                this.sendMessage(281699141, `Случилась ошибка:
+                Message object: ${JSON.stringify(message)}
+                Error: ${e.message}`);
+            }).catch((e) => {
+                console.log(e);
+            })
+        })
     },
     sendMessage(to, message) {
         return VK.call('messages.send', {

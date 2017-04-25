@@ -18,9 +18,7 @@ module.exports = {
                 return this.weatherRequest(cords.lat, cords.lng);
             }).then((res) => {
                 return res;
-            }).catch((e) => {
-                return 'error';
-            })
+            });
     },
     weatherRequest(lat, lng) {
         let requestUrl = `${DARK_SKY_WEATHER_URL}${lat},${lng}?&units=si&extend=hourly&lang=ru`
