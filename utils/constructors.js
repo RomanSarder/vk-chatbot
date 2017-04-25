@@ -50,7 +50,7 @@ module.exports = {
         let apparentTemperature = this.floorTemp(currently.apparentTemperature);
         let precipChance = Math.round(currently.precipProbability * 100);
         let humidity = Math.round(currently.humidity * 100);
-        let windSpeed = Math.round(currently.windSpeed * 1.6 * 10000) / 100;
+        let windSpeed = Math.round(currently.windSpeed * 1.6 * 100) / 100;
         let precipString = precipChance === 0 ? `Без осадков.` : `Вероятность осадков - ${precipChance}%`;
         return `Сейчас в городе ${city}: ${currently.summary.toLowerCase()}
         Температура - ${temperature}, чувствуется как - ${apparentTemperature}.
